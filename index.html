@@ -60,11 +60,11 @@
         // Decide if player won or lost
         let result = "Win";
         if (computerChoice === "even") {
-          if (playerChoice === "even") playerWin = "Win";
-          else playerWin = "Lose";
+          if (playerChoice === "even") result = "Win";
+          else result = "Lose";
         } else {
-          if (playerChoice === "even") playerWin = "Lose";
-          else playerWin = "Win";
+          if (playerChoice === "even") result = "Lose";
+          else result = "Win";
         }
         // Add number of wins and losses
         wins += result === "Win" && 1;
