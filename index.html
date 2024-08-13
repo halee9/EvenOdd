@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Even Odd Game</title>
+    <meta name="auhtor" content="Ha Lee" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <script>
+      // Initialize all the variables
+      let wins = 0;
+      let losses = 0;
+      let playerName = "";
+      let gameLoop = true;
+
+      while (true) {
+        // Prompt user the player name
+        playerName = prompt(
+          "Welcome to Even Odd Game! Please enter your name to get started:"
+        );
+        // if player press the Cancel, end the game
+        if (playerName === null) {
+          alert("You canceled the game!");
+          gameLoop = false;
+          break;
+        }
+        // if player enter nothing, continue prompt again
+        if (playerName === "") {
+          alert("You should enter your name!");
+          continue;
+        } else {
+          break;
+        }
+      }
+
+      while (gameLoop === true) {
+        let playerChoice = prompt("Guess whether even or odd? Type even/odd.");
+        // Player press the Cancel
+        if (playerChoice === null) {
+          alert("You canceled the game!");
+          break;
+        }
+        if (
+          playerChoice.toLowerCase() !== "even" &&
+          playerChoice.toLowerCase() !== "odd"
+        ) {
+          alert('You should enter "even" or "odd".');
+          continue;
+        }
+
+        // Randomize two numbers between 1 and 4 inclusive and add two numbers
+        let num1 = Math.floor(Math.random() * 4) + 1;
+        let num2 = Math.floor(Math.random() * 4) + 1;
+        let sum = num1 + num2;
+        let computerChoice = sum % 2 ? "odd" : "even";
+
+        // Decide if player won or lost
+        let result = "Win";
+        if (computerChoice === "even") {
+          if (playerChoice === "even") playerWin = "Win";
+          else playerWin = "Lose";
+        } else {
+          if (playerChoice === "even") playerWin = "Lose";
+          else playerWin = "Win";
+        }
+        // Add number of wins and losses
+        wins += result === "Win" && 1;
+        losses += result === "Lose" && 1;
+
+        // Prompt the result and ask to play again
+        let playAgain = prompt(
+          `${playerName}, you chose ${playerChoice}, the sum was ${sum}, which is an ${computerChoice} number, you ${result}!\nThat's ${wins} wins and ${losses} losses!\nWould you like to play again? y/n`
+        );
+        // if player press the Cancel, end the game
+        if (playAgain === null) {
+          alert(playerName + ", Thank you for playing!");
+          break;
+        }
+        // if player typed "y", continue the game or say goobye.
+        if (playAgain.toLowerCase() === "y") {
+          continue;
+        } else if (playAgain.toLowerCase() === "n") {
+          alert(playerName + ", Thank you for playing!");
+          break;
+        } else {
+          // Invalid input
+          alert("You should enter 'y' or 'n'");
+          continue;
+        }
+      }
+    </script>
+  </body>
+</html>
